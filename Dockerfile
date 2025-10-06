@@ -23,7 +23,7 @@ FROM nginx:stable-alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Tell Docker that the container will listen on port 80 (the default for Nginx)
-EXPOSE 10000
+EXPOSE 8000
 
 # The default command for the nginx image starts the server automatically.
 # We just add this to be explicit.
