@@ -11,10 +11,8 @@ RUN yarn install --frozen-lockfile
 # Copy the rest of the application source code
 COPY . .
 
-# Expose the port that the Ember dev server uses
-EXPOSE 4200
+# Expose a default port (Render will override this)
+EXPOSE 10000
 
-# Start the development server using yarn,
-# making it accessible on the port Render provides.
-# We also disable live-reload as it's not needed in production.
-CMD ["yarn", "ember", "serve", "--port", "$PORT", "--host", "0.0.0.0", "--live-reload=false"]
+# This CMD syntax ensures the $PORT variable is correctly used by the shell
+CMD sh -c "yarn ember serve --port $PORT --host 0.0.0.0 --live-reload=false"
